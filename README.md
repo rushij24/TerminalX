@@ -1,73 +1,68 @@
-# React + TypeScript + Vite
+# TerminalX
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A real-time port operations intelligence dashboard built for terminal control rooms. Tracks container movements, gate status, customs compliance, and operational alerts across a live terminal.
 
-Currently, two official plugins are available:
+> Built from real-world experience managing Smart InGate Automation deployments at active port terminals.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Dashboard
+- Live KPI cards — TEUs processed, gate processing time, throughput %, containers in/out
+- Hourly TEU throughput bar chart
+- Live status panel — active gates, open alerts, customs clearance rate, compliance
+- Recent alerts feed synced with the Alerts tab
 
-## Expanding the ESLint configuration
+### Gates
+- Real-time status for all 10 terminal gates (Active / Maintenance / Inactive)
+- Per-gate stats: queue length, vehicles processed, avg processing time, compliance %
+- Color-coded queue load bar (green → yellow → red)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Containers
+- Full container tracking table with search by container ID
+- Filter by status: In Terminal, Processing, In Transit, Outbound, Customs Hold
+- Columns: Container ID, Status, Type, Weight, Location, ETA, Customs, Gate
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Alerts
+- Severity-based alerts: Critical, Warning, Info
+- Filter by: All, Open, Resolved
+- One-click resolve — updates count on Dashboard in real time
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Tech Stack
+
+- **React 19** + **TypeScript**
+- **Vite** — build tooling
+- **Tailwind CSS v4** — styling
+
+---
+
+## Getting Started
+
+```bash
+git clone https://github.com/rushij24/TerminalX.git
+cd TerminalX
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open [http://localhost:5173](http://localhost:5173)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Background
+
+This project reflects real operational work:
+
+- Deployed Smart InGate Automation systems at Nhava Sheva Port, Mumbai — reducing gate processing time by **40%**
+- Coordinated monitoring of **2,800+ TEUs daily** for Indian Customs and port security
+- Led 12-member cross-functional teams across software, hardware, and field operations
+
+---
+
+## Author
+
+**Rushikesh Jagdhane** — Project Manager & Software Developer  
+[rushikeshjagdhane.com](https://www.rushikeshjagdhane.com) · [LinkedIn](https://linkedin.com/in/rushikesh-jagdhane)
