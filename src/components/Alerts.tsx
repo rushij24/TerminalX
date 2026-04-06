@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { alerts as initialAlerts } from '../data/mockData'
+import type { Alert } from '../data/mockData'
 
 const severityStyle: Record<string, string> = {
   critical: 'border-red-800 bg-red-950/30 text-red-400',
@@ -13,13 +13,13 @@ const dotStyle: Record<string, string> = {
   info: 'bg-blue-500',
 }
 
-export default function Alerts() {
-  const [alerts, setAlerts] = useState(initialAlerts)
-  const [filter, setFilter] = useState('all')
+type Props = {
+  alerts: Alert[]
+  onResolve: (id: number) => void
+}
 
-  const resolve = (id: number) => {
-    setAlerts(prev => prev.map(a => a.id === id ? { ...a, resolved: true } : a))
-  }
+export default function Alerts({ alerts, onResolve }: Props) {
+  const [filter, setFilter] = useState('all')
 
   const filtered = alerts.filter(a => {
     if (filter === 'open') return !a.resolved
@@ -69,7 +69,7 @@ export default function Alerts() {
           <div
             key={alert.id}
             className={`border rounded-xl p-4 transition-opacity ${
-              alert.resolved ? 'opacity-50 border-gray-800 bg-gray-900' : `${severityStyle[alert.severity]}`
+              alert.resolved ? 'opacity-50 border-gray-800 bg-gray-900' : severityStyle[alert.severity]
             }`}
           >
             <div className="flex items-start justify-between gap-4">
@@ -93,7 +93,7 @@ export default function Alerts() {
               </div>
               {!alert.resolved && (
                 <button
-                  onClick={() => resolve(alert.id)}
+                  onClick={() => onResolve(alert.id)}
                   className="shrink-0 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 px-3 py-1.5 rounded-lg transition-colors"
                 >
                   Resolve

@@ -19,7 +19,7 @@ export default function Containers() {
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState('All')
 
-  const statuses = ['All', 'In Terminal', 'Processing', 'Outbound', 'Customs Hold']
+  const statuses = ['All', 'In Terminal', 'Processing', 'In Transit', 'Outbound', 'Customs Hold']
 
   const filtered = containers.filter(c => {
     const matchSearch = c.id.toLowerCase().includes(search.toLowerCase())

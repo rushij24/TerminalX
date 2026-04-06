@@ -1,3 +1,13 @@
+export type Alert = {
+  id: number
+  severity: string
+  title: string
+  message: string
+  time: string
+  gate: string
+  resolved: boolean
+}
+
 export const kpis = [
   { label: 'Total TEUs Today', value: '2,847', change: '+12%', trend: 'up', color: 'blue' },
   { label: 'Gate Processing Time', value: '4.2 min', change: '-40%', trend: 'up', color: 'green' },

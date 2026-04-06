@@ -1,4 +1,5 @@
-import { kpis, throughputData, alerts, gates } from '../data/mockData'
+import { kpis, throughputData, gates } from '../data/mockData'
+import type { Alert } from '../data/mockData'
 
 const colorMap: Record<string, string> = {
   blue: 'text-blue-400 bg-blue-400/10',
@@ -9,7 +10,7 @@ const colorMap: Record<string, string> = {
 
 const maxTeus = Math.max(...throughputData.map(d => d.teus))
 
-export default function Dashboard() {
+export default function Dashboard({ alerts }: { alerts: Alert[] }) {
   const activeAlerts = alerts.filter(a => !a.resolved)
   const activeGates = gates.filter(g => g.status === 'active').length
 
@@ -35,15 +36,16 @@ export default function Dashboard() {
         <div className="lg:col-span-2 bg-gray-900 border border-gray-800 rounded-xl p-5">
           <h2 className="text-white font-semibold mb-1">TEU Throughput Today</h2>
           <p className="text-gray-400 text-xs mb-5">Container movements by hour</p>
-          <div className="flex items-end gap-1 h-40">
+          <div className="flex items-end gap-1" style={{ height: '160px' }}>
             {throughputData.map((d) => (
-              <div key={d.hour} className="flex-1 flex flex-col items-center gap-1">
+              <div key={d.hour} className="flex-1 flex flex-col items-center justify-end" style={{ height: '100%' }}>
+                <span className="text-gray-500 text-[9px] mb-1">{d.teus}</span>
                 <div
-                  className="w-full bg-blue-600 rounded-t hover:bg-blue-500 transition-colors"
-                  style={{ height: `${(d.teus / maxTeus) * 100}%` }}
-                  title={`${d.teus} TEUs`}
+                  className="w-full bg-blue-600 hover:bg-blue-500 transition-colors rounded-t cursor-pointer"
+                  style={{ height: `${(d.teus / maxTeus) * 130}px` }}
+                  title={`${d.hour}: ${d.teus} TEUs`}
                 />
-                <span className="text-gray-500 text-[9px] rotate-45 origin-left">{d.hour}</span>
+                <span className="text-gray-500 text-[9px] mt-1">{d.hour.replace(':00', '')}</span>
               </div>
             ))}
           </div>

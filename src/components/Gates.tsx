@@ -15,9 +15,9 @@ export default function Gates() {
           <p className="text-gray-400 text-sm">Real-time status of all terminal entry/exit points</p>
         </div>
         <div className="flex gap-3 text-xs">
-          <span className="flex items-center gap-1.5 text-green-400"><span className="w-2 h-2 bg-green-400 rounded-full"></span>Active: 8</span>
-          <span className="flex items-center gap-1.5 text-yellow-400"><span className="w-2 h-2 bg-yellow-400 rounded-full"></span>Maintenance: 1</span>
-          <span className="flex items-center gap-1.5 text-gray-400"><span className="w-2 h-2 bg-gray-400 rounded-full"></span>Inactive: 1</span>
+          <span className="flex items-center gap-1.5 text-green-400"><span className="w-2 h-2 bg-green-400 rounded-full"></span>Active: {gates.filter(g => g.status === 'active').length}</span>
+          <span className="flex items-center gap-1.5 text-yellow-400"><span className="w-2 h-2 bg-yellow-400 rounded-full"></span>Maintenance: {gates.filter(g => g.status === 'maintenance').length}</span>
+          <span className="flex items-center gap-1.5 text-gray-400"><span className="w-2 h-2 bg-gray-400 rounded-full"></span>Inactive: {gates.filter(g => g.status === 'inactive').length}</span>
         </div>
       </div>
 
